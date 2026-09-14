@@ -1,46 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartão Profissional em RA</title>
 
-    <title>Aula 02 - WebAR com MindAR</title>
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
 
-    <!-- Biblioteca A-Frame: criação da cena 3D -->
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-
-    <!-- Biblioteca MindAR: reconhecimento e rastreamento da imagem -->
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
 </head>
 
 <body>
+  <div id="loading">
+    <div class="loading-box">
+      <strong>Cartão Profissional em RA</strong>
+      <span>Aponte a câmera para o cartão.</span>
+      <small>Permita o acesso à câmera quando solicitado.</small>
+    </div>
+  </div>
 
-    <a-scene
-        mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;&quot;
-        vr-mode-ui="enabled: false"
-        device-orientation-permission-ui="enabled: false">
+  <a-scene
+    mindar-image="imageTargetSrc: assets/targets/targets.mind; maxTrack: 1"
+    color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    embedded
+  >
+    <a-assets>
+      <img id="card" src="assets/images/cartao.png">
+    </a-assets>
 
-        <!-- Câmera do dispositivo -->
-        <a-camera
-            position="0 0 0"
-            look-controls="enabled: false">
-        </a-camera>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- Objeto associado à imagem que será reconhecida -->
-        <a-entity mindar-image-target="targetIndex: 0">
+    <a-entity mindar-image-target="targetIndex: 0">
 
-            <!-- Cubo virtual -->
-            <a-box
-                position="0 0 0.25"
-                rotation="0 0 0"
-                scale="0.5 0.5 0.5">
-            </a-box>
+      <a-plane
+        src="#card"
+        position="0 0 0"
+        width="1"
+        height="0.625"
+        opacity="0.0">
+      </a-plane>
 
-        </a-entity>
+      <a-plane
+        class="info-panel"
+        position="-0.38 0.62 0.08"
+        width="0.68"
+        height="0.30"
+        color="#0b1d30"
+        material="opacity: 0.94"
+        rotation="0 0 -2">
+      </a-plane>
+      <a-text
+        value="SOBRE MIM"
+        position="-0.67 0.70 0.10"
+        width="1.5"
+        color="#36d1dc"
+        align="left">
+      </a-text>
+      <a-text
+        value="Estudante de tecnologia\ncom foco em backend, Linux\ne fundamentos de segurança."
+        position="-0.67 0.59 0.10"
+        width="1.25"
+        color="#f4f8ff"
+        align="left">
+      </a-text>
 
-    </a-scene>
+      <a-plane
+        class="info-panel"
+        position="0.48 0.62 0.08"
+        width="0.68"
+        height="0.30"
+        color="#0b1d30"
+        material="opacity: 0.94"
+        rotation="0 0 2">
+      </a-plane>
+      <a-text
+        value="HABILIDADES"
+        position="0.19 0.70 0.10"
+        width="1.5"
+        color="#36d1dc"
+        align="left">
+      </a-text>
+      <a-text
+        value="Python • Django • Java\nSQL • Git/GitHub • Linux"
+        position="0.19 0.59 0.10"
+        width="1.25"
+        color="#f4f8ff"
+        align="left">
+      </a-text>
 
+      <a-plane
+        class="info-panel"
+        position="-0.38 -0.75 0.08"
+        width="0.68"
+        height="0.30"
+        color="#0b1d30"
+        material="opacity: 0.94"
+        rotation="0 0 2">
+      </a-plane>
+      <a-text
+        value="PROJETOS"
+        position="-0.67 -0.67 0.10"
+        width="1.5"
+        color="#36d1dc"
+        align="left">
+      </a-text>
+      <a-text
+        value="Blog pessoal em Django\nProjetos acadêmicos em Java\nLaboratórios Linux e redes"
+        position="-0.67 -0.78 0.10"
+        width="1.18"
+        color="#f4f8ff"
+        align="left">
+      </a-text>
+
+      <a-plane
+        class="info-panel"
+        position="0.48 -0.75 0.08"
+        width="0.68"
+        height="0.30"
+        color="#0b1d30"
+        material="opacity: 0.94"
+        rotation="0 0 -2">
+      </a-plane>
+      <a-text
+        value="FORMAÇÃO"
+        position="0.19 -0.67 0.10"
+        width="1.5"
+        color="#36d1dc"
+        align="left">
+      </a-text>
+      <a-text
+        value="Técnico em Mecânica — SENAI\nFormação atual em tecnologia"
+        position="0.19 -0.78 0.10"
+        width="1.18"
+        color="#f4f8ff"
+        align="left">
+      </a-text>
+
+      <a-ring
+        position="0 0 0.14"
+        rotation="0 0 0"
+        scale="0.22 0.22 0.22"
+        radius-inner="0.75"
+        radius-outer="1"
+        color="#36d1dc"
+        animation="property: rotation; to: 0 0 360; dur: 6000; easing: linear; loop: true">
+      </a-ring>
+
+    </a-entity>
+  </a-scene>
 </body>
 </html>
